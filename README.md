@@ -8,11 +8,6 @@ In React applications using React Query, we face a common dilemma:
 
 1. **Colocation is Good**: Keeping query calls next to the components that use them makes code more maintainable and easier to understand.
 
-   ```typescript:src/core/__fixtures__/next-app/app/basic-call/page.tsx
-   startLine: 1
-   endLine: 6
-   ```
-
 2. **But... Fetch-on-Render is Bad**: Colocated queries only start fetching after the component renders, creating a waterfall effect.
 
 3. **Loader Pattern Breaks Colocation**: Moving queries to loaders improves performance but spreads related code across different files.
