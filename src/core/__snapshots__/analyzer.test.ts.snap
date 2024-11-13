@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`analyzeRoute should analyze a basic query call properly 1`] = `
+"const $90d8caae = queryClient.fetchQuery({
+  queryKey: ["todos"],
+  queryFn: () => ["3"]
+});"
+`;
+
+exports[`analyzeRoute should analyze a basic query call with variable properly 1`] = `
+"const $dd2fca7e = "5";
+const $f0d98c06 = queryClient.fetchQuery({
+  queryKey: ["todos"],
+  queryFn: () => $dd2fca7e
+});"
+`;
+
+exports[`analyzeRoute should analyze a query dependent on another query properly 1`] = `
+"const $78cf7244 = queryClient.fetchQuery({
+  queryKey: ["todos"],
+  queryFn: () => "result1"
+});
+const $47c81489 = $78cf7244;
+const $7ca18973 = queryClient.fetchQuery({
+  queryKey: ["todos"],
+  queryFn: () => $47c81489 + "result2"
+});"
+`;
