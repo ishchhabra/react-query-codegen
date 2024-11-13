@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`analyzeRoute should analyze a basic query call properly 1`] = `
-"function prefetchQuery() {
+"import { QueryClient } from "@tanstack/react-query";
+export function prefetchQuery(queryClient: QueryClient) {
   queryClient.fetchQuery({
     queryKey: ["todos"],
     queryFn: () => ["3"]
@@ -10,7 +11,8 @@ exports[`analyzeRoute should analyze a basic query call properly 1`] = `
 `;
 
 exports[`analyzeRoute should analyze a basic query call with variable properly 1`] = `
-"function prefetchQuery() {
+"import { QueryClient } from "@tanstack/react-query";
+export function prefetchQuery(queryClient: QueryClient) {
   const _temp = "5";
   queryClient.fetchQuery({
     queryKey: ["todos"],
@@ -20,24 +22,22 @@ exports[`analyzeRoute should analyze a basic query call with variable properly 1
 `;
 
 exports[`analyzeRoute should analyze a query dependent on another query properly 1`] = `
-"function prefetchQuery() {
+"import { QueryClient } from "@tanstack/react-query";
+export function prefetchQuery(queryClient: QueryClient) {
   const _useQuery = queryClient.fetchQuery({
-    queryKey: ["todos"],
-    queryFn: () => "result1"
-  });
-  const _temp = useQuery({
     queryKey: ["todos"],
     queryFn: () => "result1"
   });
   queryClient.fetchQuery({
     queryKey: ["todos"],
-    queryFn: () => _temp.data + "result2"
+    queryFn: () => _useQuery + "result2"
   });
 }"
 `;
 
 exports[`analyzeRoute should analyze a query dependent on useState properly 1`] = `
-"function prefetchQuery() {
+"import { QueryClient } from "@tanstack/react-query";
+export function prefetchQuery(queryClient: QueryClient) {
   const _useState = 0;
   queryClient.fetchQuery({
     queryKey: ["todos"],
