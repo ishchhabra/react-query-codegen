@@ -5,8 +5,7 @@ function fetchData() {
 }
 
 export default function Page() {
-  const result = useQuery({
-    queryKey: ["todos"],
-    queryFn: fetchData,
-  });
+  useQuery({ queryKey: ["todos"], queryFn: fetchData });
+
+  return null;
 }

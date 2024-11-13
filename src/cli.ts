@@ -2,7 +2,7 @@
 
 import { Command } from "commander";
 import { getFrameworkAdapter } from "./adapters/base";
-import { analyzeRoute } from "./core/analyzer";
+import { analyzeRoute } from "./core/analyzer/analyzer";
 
 const program = new Command();
 

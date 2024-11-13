@@ -6,10 +6,7 @@ export default function Page() {
     queryFn: () => "result1",
   });
 
-  const result2 = useQuery({
-    queryKey: ["todos"],
-    queryFn: () => result1.data + "result2",
-  });
+  useQuery({ queryKey: ["todos"], queryFn: () => result1.data + "result2" });
 
   return null;
 }

@@ -9,6 +9,12 @@ import {
   DEFAULT_SOURCE_TYPE,
 } from "../constants";
 
+/**
+ * Finds all calls to the `useQuery` hook in the given AST
+ *
+ * @param ast The AST to search
+ * @returns An array of NodePaths representing the calls to the `useQuery` hook
+ */
 export function findQueryCalls(ast: t.Node): NodePath<t.CallExpression>[] {
   const paths: NodePath<t.CallExpression>[] = [];
   const visitedFiles = new Set<string>();
@@ -22,6 +28,13 @@ export function findQueryCalls(ast: t.Node): NodePath<t.CallExpression>[] {
   return paths;
 }
 
+/**
+ * Recursively finds all calls to the `useQuery` hook in the given path
+ *
+ * @param path The path to search
+ * @param visitedFiles A set of visited files to avoid infinite recursion
+ * @returns An array of NodePaths representing the calls to the `useQuery` hook
+ */
 function findQueryCallsRecursive(
   path: NodePath,
   visitedFiles: Set<string>
@@ -55,6 +68,9 @@ function findQueryCallsRecursive(
   }
 
   const importSource = importDeclaration.node.source.value;
+  if (importSource === "react") {
+    return paths;
+  }
   if (visitedFiles.has(importSource)) {
     return paths;
   }
