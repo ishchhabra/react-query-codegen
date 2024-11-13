@@ -3,6 +3,7 @@ import { parse } from "@babel/parser";
 import fs from "fs";
 import { FrameworkAdapter } from "../../adapters/base";
 import * as t from "../../utils/babel-types";
+import { isReactQueryCall } from "../../utils/react-query";
 import {
   DEFAULT_ENCODING,
   DEFAULT_PLUGINS,
@@ -20,6 +21,43 @@ export function analyzeRoute(route: string, adapter: FrameworkAdapter) {
   });
   const queryCalls = findQueryCalls(ast);
   console.info(`🔍 Found ${queryCalls.length} React Query calls in ${route}`);
+
+  for (const queryCall of queryCalls) {
+    queryCall.traverse({
+      MemberExpression(path) {
+        const object = path.get("object");
+        if (!object.isIdentifier()) {
+          return;
+        }
+
+        const binding = path.scope.getBinding(object.node.name);
+        if (binding === undefined) {
+          return;
+        }
+
+        if (!binding.path.isVariableDeclarator()) {
+          return;
+        }
+
+        const init = binding.path.get("init");
+        if (!isReactQueryCall(init)) {
+          return;
+        }
+
+        const property = path.get("property");
+        if (!property.isIdentifier()) {
+          return;
+        }
+
+        if (property.node.name !== "data") {
+          queryCalls.splice(queryCalls.indexOf(queryCall), 1);
+          return;
+        }
+
+        path.replaceWith(object.node);
+      },
+    });
+  }
 
   const statements: t.Statement[] = [];
   for (const queryCall of queryCalls) {
