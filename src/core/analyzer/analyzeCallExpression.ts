@@ -35,6 +35,7 @@ function analyzeReactQueryCall(
   const parentPath = path.parentPath;
   if (parentPath.isVariableDeclarator()) {
     const identifier = path.scope.generateUidIdentifierBasedOnNode(path.node);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     path.scope.rename((parentPath.node.id as any).name, identifier.name);
     const variableDeclarator = t.variableDeclarator(identifier, callExpression);
     const variableDeclaration = t.variableDeclaration("const", [
