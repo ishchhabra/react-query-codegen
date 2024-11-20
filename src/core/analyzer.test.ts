@@ -22,7 +22,7 @@ describe("analyzeRoute", () => {
       adapter,
     );
 
-    const [_, outputContent] = writeFileSyncMock.mock.calls[0];
+    const [, outputContent] = writeFileSyncMock.mock.calls[0];
     expect(outputContent).toMatchSnapshot();
   });
 
@@ -39,7 +39,7 @@ describe("analyzeRoute", () => {
       adapter,
     );
 
-    const [_, outputContent] = writeFileSyncMock.mock.calls[0];
+    const [, outputContent] = writeFileSyncMock.mock.calls[0];
     expect(outputContent).toMatchSnapshot();
   });
 
@@ -56,7 +56,7 @@ describe("analyzeRoute", () => {
       adapter,
     );
 
-    const [_, outputContent] = writeFileSyncMock.mock.calls[0];
+    const [, outputContent] = writeFileSyncMock.mock.calls[0];
     expect(outputContent).toMatchSnapshot();
   });
 
@@ -73,7 +73,7 @@ describe("analyzeRoute", () => {
       adapter,
     );
 
-    const [_, outputContent] = writeFileSyncMock.mock.calls[0];
+    const [, outputContent] = writeFileSyncMock.mock.calls[0];
     expect(outputContent).toMatchSnapshot();
   });
 });
