@@ -19,7 +19,7 @@ describe("analyzeRoute", () => {
 
     analyzeRoute(
       path.join(__dirname, "__fixtures__/next-app/app/basic-call/page.tsx"),
-      adapter
+      adapter,
     );
 
     const [_, outputContent] = writeFileSyncMock.mock.calls[0];
@@ -34,9 +34,9 @@ describe("analyzeRoute", () => {
     analyzeRoute(
       path.join(
         __dirname,
-        "__fixtures__/next-app/app/basic-call-with-variable/page.tsx"
+        "__fixtures__/next-app/app/basic-call-with-variable/page.tsx",
       ),
-      adapter
+      adapter,
     );
 
     const [_, outputContent] = writeFileSyncMock.mock.calls[0];
@@ -51,9 +51,9 @@ describe("analyzeRoute", () => {
     analyzeRoute(
       path.join(
         __dirname,
-        "__fixtures__/next-app/app/query-dependent-on-query/page.tsx"
+        "__fixtures__/next-app/app/query-dependent-on-query/page.tsx",
       ),
-      adapter
+      adapter,
     );
 
     const [_, outputContent] = writeFileSyncMock.mock.calls[0];
@@ -68,9 +68,9 @@ describe("analyzeRoute", () => {
     analyzeRoute(
       path.join(
         __dirname,
-        "__fixtures__/next-app/app/query-dependent-on-use-state/page.tsx"
+        "__fixtures__/next-app/app/query-dependent-on-use-state/page.tsx",
       ),
-      adapter
+      adapter,
     );
 
     const [_, outputContent] = writeFileSyncMock.mock.calls[0];

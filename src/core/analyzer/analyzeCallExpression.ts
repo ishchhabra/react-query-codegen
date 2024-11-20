@@ -4,7 +4,7 @@ import { isReactQueryCall } from "../../utils/react-query";
 import { analyzeReferencedIdentifier } from "./analyzeReferencedIdentifier";
 
 export function analyzeCallExpression(
-  path: NodePath<t.CallExpression>
+  path: NodePath<t.CallExpression>,
 ): { statements: t.Statement[]; identifier?: t.Identifier } | undefined | null {
   if (isReactQueryCall(path)) {
     return analyzeReactQueryCall(path);
@@ -14,7 +14,7 @@ export function analyzeCallExpression(
 }
 
 function analyzeReactQueryCall(
-  path: NodePath<t.CallExpression>
+  path: NodePath<t.CallExpression>,
 ): { statements: t.Statement[]; identifier?: t.Identifier } | undefined | null {
   const statements = [];
 
@@ -29,7 +29,7 @@ function analyzeReactQueryCall(
 
   const callExpression = t.callExpression(
     t.memberExpression(t.identifier("queryClient"), t.identifier("fetchQuery")),
-    path.node.arguments
+    path.node.arguments,
   );
 
   const parentPath = path.parentPath;
@@ -50,7 +50,7 @@ function analyzeReactQueryCall(
 }
 
 function analyzeReferences(
-  path: NodePath
+  path: NodePath,
 ): { statements: t.Statement[]; identifier?: t.Identifier } | undefined | null {
   const statements = [];
 

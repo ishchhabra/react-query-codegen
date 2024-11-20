@@ -7,7 +7,7 @@ export default function writeOutput(
   route: string,
   outputDir: string,
   adapter: FrameworkAdapter,
-  output: string
+  output: string,
 ) {
   // Get the directory path without the file name
   const outputRoutePath = path.join("generated", route);

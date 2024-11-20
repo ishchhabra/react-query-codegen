@@ -8,7 +8,7 @@ import { analyzeMemberExpression } from "./analyzeMemberExpression";
 import { analyzeVariableDeclarator } from "./analyzeVariableDeclarator";
 
 export default function analyzeNode(
-  path: NodePath
+  path: NodePath,
 ): { statements: t.Statement[]; identifier?: t.Identifier } | undefined | null {
   switch (true) {
     case path.isCallExpression():

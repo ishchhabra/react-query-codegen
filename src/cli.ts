@@ -10,7 +10,7 @@ program
   .name("react-query-hoist")
   .description(
     "Generates code for all the React Query calls " +
-      "that can be hoisted and run at the top of the page"
+      "that can be hoisted and run at the top of the page",
   )
   .version("0.0.1")
   .option("-r, --root <path>", "The root directory of the project")

@@ -3,7 +3,7 @@ import * as t from "../../utils/babel-types";
 import { isReactUseStateCall } from "../../utils/react-hook";
 
 export function analyzeVariableDeclarator(
-  path: NodePath<t.VariableDeclarator>
+  path: NodePath<t.VariableDeclarator>,
 ): { statements: t.Statement[]; identifier?: t.Identifier } | undefined | null {
   const identifier = path.scope.generateUidIdentifier();
   const variableDeclarator = t.variableDeclarator(identifier, path.node.init);
@@ -20,7 +20,7 @@ export function analyzeVariableDeclarator(
 }
 
 export function analyzeReactUseStateVariableDeclarator(
-  path: NodePath<t.VariableDeclarator>
+  path: NodePath<t.VariableDeclarator>,
 ): { statements: t.Statement[]; identifier?: t.Identifier } | undefined | null {
   const init = path.get("init");
   t.assertCallExpression(init.node);

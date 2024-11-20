@@ -4,7 +4,7 @@ import { isReactQueryCall } from "../../utils/react-query";
 import analyzeNode from "./analyzeNode";
 
 export function analyzeReferencedIdentifier(
-  path: NodePath<t.Identifier | t.JSXIdentifier>
+  path: NodePath<t.Identifier | t.JSXIdentifier>,
 ): { statements: t.Statement[]; identifier?: t.Identifier } | undefined | null {
   const binding = path.scope.getBinding(path.node.name);
   if (binding === undefined) {

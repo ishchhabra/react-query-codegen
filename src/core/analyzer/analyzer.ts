@@ -71,24 +71,24 @@ export function analyzeRoute(route: string, adapter: FrameworkAdapter) {
 
   const queryClientIdentifier = t.identifier("queryClient");
   queryClientIdentifier.typeAnnotation = t.typeAnnotation(
-    t.genericTypeAnnotation(t.identifier("QueryClient"), null)
+    t.genericTypeAnnotation(t.identifier("QueryClient"), null),
   );
   const prefetchQueryFunctionDeclaration = t.functionDeclaration(
     t.identifier("prefetchQuery"),
     [queryClientIdentifier],
-    t.blockStatement(statements)
+    t.blockStatement(statements),
   );
   const exportNamedDeclaration = t.exportNamedDeclaration(
-    prefetchQueryFunctionDeclaration
+    prefetchQueryFunctionDeclaration,
   );
   const importDeclaration = t.importDeclaration(
     [
       t.importSpecifier(
         t.identifier("QueryClient"),
-        t.identifier("QueryClient")
+        t.identifier("QueryClient"),
       ),
     ],
-    t.stringLiteral("@tanstack/react-query")
+    t.stringLiteral("@tanstack/react-query"),
   );
   const program = t.program([importDeclaration, exportNamedDeclaration]);
 

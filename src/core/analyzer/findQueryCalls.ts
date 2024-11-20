@@ -37,7 +37,7 @@ export function findQueryCalls(ast: t.Node): NodePath<t.CallExpression>[] {
  */
 function findQueryCallsRecursive(
   path: NodePath,
-  visitedFiles: Set<string>
+  visitedFiles: Set<string>,
 ): NodePath<t.CallExpression>[] {
   const paths: NodePath<t.CallExpression>[] = [];
 
